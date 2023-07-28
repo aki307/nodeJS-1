@@ -3,7 +3,6 @@
 
 <head>
   <title>
-    <%= title %>
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -23,39 +22,58 @@
       <div class="collapse navbar-collapse justify-content-end" id="nav-bar">
         <ul class="navbar-nav mr-auto"></ul>
         <ul class="navbar-nav">
-          <li class="nav-item mr-2" href="#"><a href="/">Login</a></li>
-          <li class="nav-item" href="#"><a href="/register">Register</a></li>
+          <% if (session.login) { %>
+            <li class="nav-item mr-2" href="#"><a href="/">ログアウト</a></li>
+          <% } else { %>
+            <li class="nav-item mr-2" href="#"><a href="/">Login</a></li>
+            <li class="nav-item" href="#"><a href="/register">Register</a></li>
+          <% } %>
         </ul>
       </div>
     </nav>
     <div class="card mx-auto">
-      <div class="card-header">Login</div>
+      <div class="card-header">
+        <% if (session.login) { %>
+          Dashboard
+        <% } else { %>
+          Login
+        <% } %>
+      </div>
+      <p><%- content %></p>
       <div class="card-body">
-        <form action="#" method="post">
-          <div class="row mb-3">
-            <label for="inputEmail" class="col-sm-2 col-form-label">E-Mail Address</label>
-            <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail">
+        <% if (session.login) { %>
+          <% if (session.username) { %>
+            <p>ようこそ、<%= session.username %>さん！</p>
+          <% } else { %>
+            <p>You are logged in!</p>
+          <% } %>
+        <% } else { %>
+          <form action="/" method="post">
+            <div class="row mb-3">
+              <label for="inputEmail" class="col-sm-2 col-form-label">E-Mail Address</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="inputEmail" name="mail">
+              </div>
             </div>
-          </div>
-          <div class="row mb-3">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control" id="inputPassword">
+            <div class="row mb-3">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword" name="password">
+              </div>
             </div>
-          </div>
-          <div class="container form-check mb-3">
-            <input type="checkbox" class="form-check-input" id="name">
-            <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+            <div class="container form-check mb-3">
+              <input type="checkbox" class="form-check-input" id="name">
+              <label class="form-check-label" for="exampleCheck1">Remember Me</label>
 
-          </div>
-          <div class="form-submit text-center">
-            <button type="submit" class="btn btn-primary ">Login</button>
-            <a href="#">Forgot Your Password</a>
-          </div>
+            </div>
+            <div class="form-submit text-center">
+              <button type="submit" class="btn btn-primary ">Login</button>
+              <a href="#">Forgot Your Password</a>
+            </div>
 
 
-        </form>
+          </form>
+          <% } %>
       </div>
     </div>
 
