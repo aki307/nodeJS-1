@@ -1,1 +1,5 @@
 node_modules/
+
+prisma/migrations/*
+prisma/mydb.db
+prisma/migration_lock.toml

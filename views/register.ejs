@@ -3,7 +3,6 @@
 
 <head>
   <title>
-    <%= title %>
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -30,30 +29,31 @@
     </nav>
     <div class="card mx-auto">
       <div class="card-header">Register</div>
+      <p><%- content %></p>
       <div class="card-body">
-        <form action="/register/post" method="post">
+        <form action="/register" method="post">
           <div class="row mb-3">
             <label for="inputname" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputName" name="user-name" required>
+              <input type="text" class="form-control" id="inputName" name="name" value="<%= form.name %>" required>
             </div>
           </div>
           <div class="row mb-3">
             <label for="inputEmail" class="col-sm-2 col-form-label">E-Mail Address</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail" name="user-email" required>
+              <input type="email" class="form-control" id="inputEmail" name="email" value="<%= form.email %>" required>
             </div>
           </div>
           <div class="row mb-3">
             <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-10">
-              <input type="password" class="form-control" id="inputPassword" name="user-pasword" required>
+              <input type="password" class="form-control" id="inputPassword" name="password" value="<%= form.password %>" required>
             </div>
           </div>
           <div class="row mb-3">
             <label for="Password_confirmation" class="col-sm-2 col-form-label">Confirm Password</label>
             <div class="col-sm-10">
-              <input type="password" class="form-control" id="passwordConfirmation" name="user-password-validation"
+              <input type="password" class="form-control" id="passwordConfirmation" name="confirm-password"
                 required>
             </div>
           </div>

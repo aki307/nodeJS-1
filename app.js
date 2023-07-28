@@ -8,7 +8,19 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const registerRouter = require('./routes/register');
 
+
+const session = require('express-session');
+
 const app = express();
+
+const secretKey = 'my-secret-key-' + Math.random().toString(36).substring(7);
+
+app.use(session({
+  secret: secretKey,
+  resave: false,
+  saveUninitialized: true
+}));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
